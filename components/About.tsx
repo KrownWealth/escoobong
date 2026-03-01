@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AboutMeSvg from "./AboutMeSvg";
+import AnimatedCopy from "./AnimatedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,11 +103,30 @@ export default function AboutMe() {
       {/* ── Services copy — sits below, revealed after banner scales down ── */}
       <section className="services-copy-section">
         <h1 className="about-animate-text" ref={serviceCopyRef}>
-          ESco Obong; is a Senior Software Engineer at Airbnb, Founder of Algorythm,
-          I create websites and digital experiences that value clarity above
-          excess. Through minimal form and precise detail, I aim to build work
-          that lasts and offers a quiet sense of order.
+          Esco Obong; is a Senior Software Engineer at <span className="text-[#FF5A5F]">Airbnb,</span> (ex-Uber, NYTimes), and Founder of Algorythm.
         </h1>
+      </section>
+
+      <section className="services">
+        <div className="service">
+          <div className="col">
+            <div className="service-copy">
+              <AnimatedCopy>
+                <p>
+
+                  Every breakthrough begins with detail. From the first sketch
+                  to full-scale production, our engineering process is built on
+                  accuracy, consistency, and performance. What you see isn’t
+                  just a machine—it’s the sum of thousands of deliberate
+                  calculations designed to set new standards in motion.
+                </p>
+              </AnimatedCopy>
+            </div>
+          </div>
+          <div className="col">
+            <img src="/img_2.jpg" alt="" />
+          </div>
+        </div>
       </section>
     </>
   );

@@ -193,7 +193,7 @@ export default function HeroBanner() {
       <nav className="menu-nav">
         <div className="menu-bar">
           <div className="menu-logo">
-            <a href="#"><span className="menu-logo-text">Esco</span></a>
+            <a href="/"><span className="menu-logo-text">Esco Obong</span></a>
           </div>
           <div className="menu-toggle-btn" onClick={handleMenuToggle}>
             <div className="menu-toggle-label">
@@ -214,23 +214,23 @@ export default function HeroBanner() {
             <div className="menu-content-wrapper">
               <div className="menu-content-main">
                 <div className="menu-col">
-                  <div className="menu-link"><a href="#">Index</a></div>
-                  <div className="menu-link"><a href="#">Portfolio</a></div>
+                  <div className="menu-link"><a href="#">Home</a></div>
+                  <div className="menu-link"><a href="#">About</a></div>
                   <div className="menu-link"><a href="#">Studio</a></div>
                   <div className="menu-link"><a href="#">Journal</a></div>
                   <div className="menu-link"><a href="#">Connect</a></div>
                 </div>
                 <div className="menu-col">
-                  <div className="menu-tag"><a href="#">Web Animations</a></div>
-                  <div className="menu-tag"><a href="#">Interactive Media</a></div>
-                  <div className="menu-tag"><a href="#">Motion Craft</a></div>
+                  <div className="menu-tag"><a href="#">LLMs</a></div>
+                  <div className="menu-tag"><a href="#">System Design</a></div>
+                  <div className="menu-tag"><a href="#">Algorithm & Data Structure</a></div>
                 </div>
               </div>
               <div className="menu-footer">
-                <div className="menu-col"><p>Toronto, Canada</p></div>
+                <div className="menu-col"><p>New York City, United State</p></div>
                 <div className="menu-col">
-                  <p>+1 437 555 0199</p>
-                  <p>hello@nullspace.studio</p>
+                  <p>+1 700 000 0000</p>
+                  <p>hello@esco.com</p>
                 </div>
               </div>
             </div>
@@ -250,8 +250,8 @@ export default function HeroBanner() {
         </div>
 
         <div className="header">
-          <h1><span>Combat from</span></h1>
-          <h1><span>the streets of</span></h1>
+          <h1><span>Happy Birthday</span></h1>
+          <h1><span>Esco Obong</span></h1>
           <h1><span>Kansas</span></h1>
           <p><span>( watch the fight )</span></p>
         </div>
