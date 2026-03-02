@@ -32,7 +32,7 @@ const journeyData: JourneyCardData[] = [
     image: "/sticky-cards/card_2.jpg",
     label: "(The conviction)",
     description:
-      "Amazon saw what the résumé couldn't show — a systems thinker who builds with scale in mind from day one. Another proof point that unconventional paths can lead to the most conventional of destinations.",
+      "Amazon saw what the résumé couldn't show. Esco is systems thinker who builds with scale in mind from day one. Another proof point that unconventional paths can lead to the most conventional of destinations.",
   },
   {
     index: "03",
@@ -40,7 +40,7 @@ const journeyData: JourneyCardData[] = [
     image: "/sticky-cards/card_3.jpg",
     label: "(Where I landed)",
     description:
-      "Airbnb was the choice. Writing production code, shipping at scale, and learning how the best engineers in the world collaborate. LLMs have since changed how that code gets written — and I've written about it.",
+      "Airbnb was the choice. Writing production code, shipping at scale, and learning how the best engineers in the world collaborate. LLMs has changed how I write my codes at Airbnb. Wrote an article it, go check it out.",
   },
   {
     index: "04",
