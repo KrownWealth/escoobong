@@ -7,6 +7,7 @@ import CustomEase from "gsap/CustomEase";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import Link from "next/link";
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger);
 
@@ -193,7 +194,7 @@ export default function HeroBanner() {
       <nav className="menu-nav">
         <div className="menu-bar">
           <div className="menu-logo">
-            <a href="/"><span className="menu-logo-text">Esco Obong</span></a>
+            <Link href="/"><span className="menu-logo-text">Esco Obong</span></Link>
           </div>
           <div className="menu-toggle-btn" onClick={handleMenuToggle}>
             <div className="menu-toggle-label">

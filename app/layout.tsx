@@ -1,21 +1,19 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import DynamicSeo from "@/utils/Dynamic_Seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const appColor = "#0F52BA";
 
-export const metadata: Metadata = {
-  title: "Esco Obong",
-  description: "Senior Software Engineer | Algorythm",
+export const viewport: Viewport = {
+  themeColor: appColor,
+  width: "device-width",
+  initialScale: 1,
+  userScalable: true,
 };
+
+export const metadata: Metadata = DynamicSeo(0);
+
 
 export default function RootLayout({
   children,
@@ -25,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased`}
       >
         <main>
           {children}

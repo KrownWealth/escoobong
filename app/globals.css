@@ -5,6 +5,24 @@
   --foreground: #171717;
 }
 
+@font-face {
+  font-family: "Saans TRIAL";
+  src: url("/fonts/SaansTRIAL-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Saans TRIAL";
+  src: url("/fonts/SaansTRIAL-Bold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -26,7 +44,7 @@
 
 html,
 body {
-  font-family: "Saans TRIAL", sans-serif;
+ font-family: "Saans TRIAL", sans-serif;
   background-color: #e3e3db;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -35,7 +53,7 @@ body {
 
 /* ── Global typography scale ── */
 :root {
-  --font-display: "Saans TRIAL", sans-serif;
+  --font-display:  "Saans TRIAL", sans-serif;
   --font-size-hero: clamp(3.5rem, 9vw, 10rem);
   --font-weight-display: 800;
   --letter-spacing-display: -0.04em;
@@ -931,3 +949,219 @@ p {
     padding: 0 1.25rem;
   }
 }
+
+
+/* ─── Writing / News Section ─────────────────────────────────── */
+
+.writing-section {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  background-color: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2vw 2rem;
+  overflow: hidden;
+}
+
+.writing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  flex-shrink: 0;
+  opacity: 0;
+}
+
+.writing-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffbb00;
+  margin-bottom: 0.4rem;
+}
+
+.writing-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: var(--font-weight-display);
+  letter-spacing: var(--letter-spacing-display);
+  line-height: 1;
+  color: #fff;
+}
+
+.writing-view-all {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 2px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.writing-view-all:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.writing-overflow {
+  flex: 1;
+  overflow: visible;
+  position: relative;
+}
+
+.writing-track {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  height: 100%;
+  will-change: transform;
+}
+
+.writing-card {
+  flex-shrink: 0;
+  width: clamp(280px, 28vw, 420px);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background-color: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.writing-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.writing-card-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #1e1e1e;
+  flex-shrink: 0;
+}
+
+.writing-card-img img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.writing-card:hover .writing-card-img img {
+  transform: scale(1.04);
+}
+
+.writing-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.writing-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.writing-card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffbb00;
+}
+
+.writing-card-date {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.writing-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: #fff;
+  flex: none;        
+  display: -webkit-box;
+  -webkit-line-clamp: 3;  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.35em * 3);  
+}
+
+.writing-card-cta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: color 0.25s ease;
+}
+
+.writing-card:hover .writing-card-cta {
+  color: #ffbb00;
+}
+
+.writing-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.writing-progress-fill {
+  height: 100%;
+  width: 100%;
+  background-color: #ffbb00;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+
+
+.writing-card-excerpt {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #fff;
+  text-transform: none;
+  
+}
+
+@media (max-width: 768px) {
+  .writing-section {
+    padding: 2rem 1.5rem 2rem;
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .writing-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .writing-card {
+    width: 80vw;
+  }
+}
+
+
