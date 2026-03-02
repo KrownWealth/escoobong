@@ -40,6 +40,8 @@ body {
   --font-weight-display: 800;
   --letter-spacing-display: -0.04em;
   --line-height-display: 0.88;
+  --bg: #1a1a1a;
+  --fg: #edf1e8;
 }
 
 p {
@@ -525,5 +527,407 @@ p {
     font-size: 2rem;
     letter-spacing: -0.05rem;
     width: 100%;
+  }
+}
+
+/* ─── Journey Section ───────────────────────────────────────── */
+
+.journey-cards {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg);
+  padding-bottom: 20svh;
+}
+
+.journey-card {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  background-color: var(--fg); /* #edf1e8 — cream/off-white */
+  color: var(--bg);
+  padding: 1.5rem;
+  display: flex;
+  gap: 3rem;
+  overflow: hidden; /* keeps all content clipped inside the card */
+  will-change: transform;
+  transform-origin: center top;
+}
+
+/* darkening overlay driven by --after-opacity GSAP var */
+.journey-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: var(--after-opacity, 0);
+  transition: opacity 0.1s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.journey-card-index {
+  flex: 2;
+  overflow: hidden;
+}
+
+.journey-card-content {
+  flex: 4;
+  padding-top: 1.5rem;
+  overflow: hidden;
+  min-width: 0; /* prevents flex child from overflowing */
+}
+
+.journey-card-content-wrapper {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.journey-card-header {
+  width: 75%;
+}
+
+/* Image constrained — not full width of the card */
+.journey-card-img {
+  width: 60%;
+  overflow: hidden;
+}
+
+.journey-card-img img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.journey-card-copy {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.journey-card-copy-title {
+  flex: 2;
+}
+
+.journey-card-copy-description {
+  flex: 4;
+}
+
+.journey-card h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.journey-card p {
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.journey-card-copy-title p {
+  text-transform: uppercase;
+  font-weight: 650;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1000px) {
+  .journey-card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .journey-card-content-wrapper {
+    width: 100%;
+  }
+
+  .journey-card-img {
+    width: 100%;
+  }
+
+  .journey-card-copy {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .journey-card-index {
+    flex: 0 0 auto;
+  }
+
+  .journey-card h1 {
+    font-size: 2rem;
+    letter-spacing: 0;
+  }
+
+  .journey-card p {
+    font-size: 1rem;
+  }
+}
+
+/* ─── Journey Intro ─────────────────────────────────────────── */
+
+.journey-intro {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.journey-intro-text {
+  /* Inherits .about-animate-text base styles (clip reveal).
+     Override width so it fills more of the viewport at this larger size. */
+  width: 80%;
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .journey-intro-text {
+    width: 100%;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+}
+
+/* ─── Journey Banner (mirrors .about-banners styles) ─────────── */
+
+.journey-banners {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.journey-banner-row {
+  position: relative;
+  width: 100%;
+  padding: 0 2rem;
+  background-color: #1a1a1a;
+  will-change: transform;
+}
+
+/* ─── Study Plan Section ─────────────────────────────────────── */
+
+.study-plan {
+  position: relative;
+  width: 100%;
+  background-color: #0d0d0d;
+  color: #fff;
+  padding: 8vw 0 6vw;
+  overflow: hidden;
+}
+
+.study-plan-heading {
+  padding: 0 2vw 5vw;
+}
+
+.study-plan-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffbb00;
+  margin-bottom: 1.25rem;
+}
+
+.study-plan-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-weight: var(--font-weight-display);
+  letter-spacing: var(--letter-spacing-display);
+  line-height: 1.05;
+  max-width: 900px;
+  color: #fff;
+}
+
+/* ── Each row ── */
+
+.study-plan-rows {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.study-plan-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 80px;
+}
+
+.study-plan-row:hover .study-plan-marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── Left label column ── */
+
+.study-plan-row-label {
+  flex-shrink: 0;
+  width: clamp(180px, 22vw, 280px);
+  padding: 0 2vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.study-plan-row-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffbb00;
+}
+
+.study-plan-row-topic {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.1vw, 1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Marquee ── */
+
+.study-plan-marquee-clip {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  /* Fade edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.study-plan-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: study-marquee linear infinite;
+  will-change: transform;
+}
+
+@keyframes study-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Individual items ── */
+
+.study-plan-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 2rem;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  height: 80px;
+  transition: background-color 0.2s ease;
+}
+
+.study-plan-item:hover {
+  background-color: rgba(255, 187, 0, 0.05);
+}
+
+.study-plan-item-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #ffbb00;
+  flex-shrink: 0;
+}
+
+.study-plan-item-text {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.1vw, 1.05rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.study-plan-item:hover .study-plan-item-text {
+  color: #fff;
+}
+
+/* ── Footer ── */
+
+.study-plan-footer {
+  margin-top: 4vw;
+  padding: 0 4vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+}
+
+.study-plan-footer p {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .study-plan-row {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  .study-plan-row-label {
+    width: 100%;
+    padding: 0 1.25rem 0.75rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .study-plan-row-topic {
+    white-space: normal;
+  }
+
+  .study-plan-marquee-clip {
+    width: 100%;
+  }
+
+  .study-plan-item {
+    height: 56px;
+    padding: 0 1.25rem;
   }
 }

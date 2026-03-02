@@ -3,8 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AboutMeSvg from "./AboutMeSvg";
-import AnimatedCopy from "./AnimatedText";
+import ReuseableSVG from "./ReuseableSVG";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,7 +94,7 @@ export default function AboutMe() {
             className="about-banner-row"
             ref={(el) => { headerRefs.current[i] = el; }}
           >
-            <AboutMeSvg />
+            <ReuseableSVG text="ABOUT ME" />
           </div>
         ))}
       </section>
@@ -103,11 +102,11 @@ export default function AboutMe() {
       {/* ── Services copy — sits below, revealed after banner scales down ── */}
       <section className="services-copy-section">
         <h1 className="about-animate-text" ref={serviceCopyRef}>
-          Esco Obong; is a Senior Software Engineer at <span className="text-[#FF5A5F]">Airbnb,</span> (ex-Uber, NYTimes), and Founder of Algorythm.
+          Esco Obong; is a Senior Software Engineer at Airbnb, (ex-Uber, NYTimes), and Founder of Algorythm.
         </h1>
       </section>
 
-      <section className="services">
+      {/* <section className="services">
         <div className="service">
           <div className="col">
             <div className="service-copy">
@@ -127,7 +126,7 @@ export default function AboutMe() {
             <img src="/img_2.jpg" alt="" />
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

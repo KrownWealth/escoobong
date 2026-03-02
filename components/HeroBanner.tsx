@@ -250,11 +250,11 @@ export default function HeroBanner() {
         </div>
 
         <div className="header">
-          <h1><span>Happy Birthday</span></h1>
+          {/* <h1><span>Happy Birthday</span></h1> */}
           <h1><span>Esco Obong</span></h1>
-          <h1><span>Kansas</span></h1>
-          <p><span>( watch the fight )</span></p>
-        </div>
+          {/* <h1><span>Kansas</span></h1>
+          <p><span>( watch the fight )</span></p> */}
+        </div>S
 
         <div className="coordinates">
           <p><span>37.6934° N</span></p>

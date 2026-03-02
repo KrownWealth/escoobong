@@ -10,138 +10,71 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 interface AnimatedCopyProps {
   children: React.ReactNode;
-  colorInitial?: string;
-  colorAccent?: string;
-  colorFinal?: string;
+  colorDim?: string;
+  colorLit?: string;
   className?: string;
-}
-
-interface SplitRefs {
-  wordSplit: SplitText;
-  charSplit: SplitText;
+  start?: string;
+  end?: string;
 }
 
 export default function AnimatedCopy({
   children,
-  colorInitial = "#dddddd",
-  colorAccent = "#abff02",
-  colorFinal = "#000000",
+  colorDim = "#444444",
+  colorLit = "#ffffff",
   className,
+  start = "top 85%",
+  end = "top 20%",
 }: AnimatedCopyProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const splitRefs = useRef<SplitRefs[]>([]);
-  const lastScrollProgress = useRef<number>(0);
-  const colorTransitionTimers = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map());
-  const completedChars = useRef<Set<number>>(new Set());
 
   useGSAP(
     () => {
       const container = containerRef.current;
       if (!container) return;
 
-      splitRefs.current = [];
-      lastScrollProgress.current = 0;
-      colorTransitionTimers.current.clear();
-      completedChars.current.clear();
-
-      // Always treat direct children as the elements to animate
       const elements = Array.from(container.children) as HTMLElement[];
       if (elements.length === 0) return;
 
-      elements.forEach((element) => {
-        const wordSplit = SplitText.create(element, {
+      // Split every child element into words, then chars
+      const allWords: HTMLElement[] = [];
+      const splits: SplitText[] = [];
+
+      elements.forEach((el) => {
+        const split = SplitText.create(el, {
           type: "words",
-          wordsClass: "word",
+          wordsClass: "anim-word",
         });
-
-        const charSplit = SplitText.create(wordSplit.words as HTMLElement[], {
-          type: "chars",
-          charsClass: "char",
-        });
-
-        splitRefs.current.push({ wordSplit, charSplit });
+        splits.push(split);
+        allWords.push(...(split.words as HTMLElement[]));
       });
 
-      const allChars = splitRefs.current.flatMap(
-        ({ charSplit }) => charSplit.chars
-      ) as HTMLElement[];
+      const total = allWords.length;
 
-      gsap.set(allChars, { color: colorInitial });
-
-      const scheduleFinalTransition = (char: HTMLElement, index: number) => {
-        if (colorTransitionTimers.current.has(index)) {
-          clearTimeout(colorTransitionTimers.current.get(index));
-        }
-
-        const timer = setTimeout(() => {
-          if (!completedChars.current.has(index)) {
-            gsap.to(char, {
-              duration: 0.1,
-              ease: "none",
-              color: colorFinal,
-              onComplete: () => {
-                completedChars.current.add(index);
-              },
-            });
-          }
-          colorTransitionTimers.current.delete(index);
-        }, 100);
-
-        colorTransitionTimers.current.set(index, timer);
-      };
+      // Start all words dim
+      gsap.set(allWords, { color: colorDim });
 
       ScrollTrigger.create({
         trigger: container,
-        start: "top 90%",
-        end: "top 10%",
+        start,
+        end,
         scrub: 1,
         onUpdate: (self) => {
-          const progress = self.progress;
-          const totalChars = allChars.length;
-          const isScrollingDown = progress >= lastScrollProgress.current;
-          const currentCharIndex = Math.floor(progress * totalChars);
+          // How many words should be lit at this scroll position
+          const litCount = Math.round(self.progress * total);
 
-          allChars.forEach((char, index) => {
-            if (!isScrollingDown && index >= currentCharIndex) {
-              if (colorTransitionTimers.current.has(index)) {
-                clearTimeout(colorTransitionTimers.current.get(index));
-                colorTransitionTimers.current.delete(index);
-              }
-              completedChars.current.delete(index);
-              gsap.set(char, { color: colorInitial });
-              return;
-            }
-
-            if (completedChars.current.has(index)) return;
-
-            if (index <= currentCharIndex) {
-              gsap.set(char, { color: colorAccent });
-              if (!colorTransitionTimers.current.has(index)) {
-                scheduleFinalTransition(char, index);
-              }
-            } else {
-              gsap.set(char, { color: colorInitial });
-            }
+          allWords.forEach((word, i) => {
+            gsap.set(word, {
+              color: i < litCount ? colorLit : colorDim,
+            });
           });
-
-          lastScrollProgress.current = progress;
         },
       });
 
       return () => {
-        colorTransitionTimers.current.forEach((timer) => clearTimeout(timer));
-        colorTransitionTimers.current.clear();
-        completedChars.current.clear();
-        splitRefs.current.forEach(({ wordSplit, charSplit }) => {
-          charSplit?.revert();
-          wordSplit?.revert();
-        });
+        splits.forEach((s) => s.revert());
       };
     },
-    {
-      scope: containerRef,
-      dependencies: [colorInitial, colorAccent, colorFinal],
-    }
+    { scope: containerRef }
   );
 
   return (

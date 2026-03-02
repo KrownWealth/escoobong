@@ -1,9 +1,20 @@
-export default function AboutMeSvg() {
+import React from "react";
+
+interface AboutMeSvgProps {
+  text: string;
+  className?: string;
+}
+
+export default function ReuseableSVG({
+  text,
+  className,
+}: AboutMeSvgProps) {
   return (
     <svg
       viewBox="0 0 1400 220"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
+      className={className}
       style={{ width: "100%", height: "auto", display: "block" }}
     >
       <text
@@ -18,7 +29,7 @@ export default function AboutMeSvg() {
         stroke="#ffffff"
         strokeWidth="1.5"
       >
-        ABOUT ME
+        {text}
       </text>
     </svg>
   );
